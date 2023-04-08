@@ -1,13 +1,21 @@
 import PromoCodeBar from './components/PromoCodeBar'
 import './App.css'
-import Carousel from './components/Carousel'
+import MyCarousel from './components/MyCarousel'
+import LogoBar from './components/LogoBar'
+import NavBar from './components/NavBar'
+import NewArrivals from './containers/NewArrivals'
+import Footer from './containers/Footer'
 
 function App() {
 
   return (
     <div className="App">
       <PromoCodeBar />
-      <Carousel />
+      <LogoBar fontSize="text-5xl" />
+      <NavBar />
+      <MyCarousel />
+      <NewArrivals />
+      <Footer />
     </div>
   )
 }

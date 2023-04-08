@@ -16,7 +16,7 @@ export default function PromoCodeBar() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-xs py-4 opacity-1 tracking-[0.25em] md:tracking-[0.3em] font-light md:text-base">
+          <p className="text-xs py-4 tracking-[0.25em] md:tracking-[0.3em] font-light md:text-base">
             {promoTexts[index]}
           </p>
         </motion.div>
@@ -36,7 +36,7 @@ export default function PromoCodeBar() {
   }, [textIndex]);
 
   return (
-    <div className="min-w-screen flex item-center justify-center bg-main-1 text-main-2">
+    <div className="w-full flex item-center justify-center bg-main-1 text-main-2 border-box">
       <PromoText index={textIndex} />
     </div>
   );

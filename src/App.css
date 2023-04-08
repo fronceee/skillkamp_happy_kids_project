@@ -1,0 +1,12 @@
+body {
+    overflow-x: hidden;
+    background-color: #ffffff;
+}
+
+button.react-multiple-carousel__arrow--left  {
+    background-color: rgba(40, 40, 40, 0.4);
+}
+
+button.react-multiple-carousel__arrow--right  {
+    background-color: rgba(40, 40, 40, 0.4);
+}

@@ -1,23 +1,29 @@
-import PromoCodeBar from './components/PromoCodeBar'
-import './App.css'
-import MyCarousel from './components/MyCarousel'
-import LogoBar from './components/LogoBar'
-import NavBar from './components/NavBar'
-import NewArrivals from './containers/NewArrivals'
-import Footer from './containers/Footer'
+import "./App.css";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./containers/Home";
+import OurStory from "./containers/OurStory";
+import Contacts from "./containers/Contacts";
+import Policy from "./containers/Policy"
+import FAQ from "./containers/FAQ";
 
 function App() {
-
   return (
-    <div className="App">
-      <PromoCodeBar />
-      <LogoBar fontSize="text-5xl" />
-      <NavBar />
-      <MyCarousel />
-      <NewArrivals />
-      <Footer />
-    </div>
-  )
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="our-story" element={<OurStory />} />
+            <Route path="contacts" element={<Contacts />} />
+            <Route path="policy" element={<Policy />} />
+            <Route path="faq" element={<FAQ />} />
+          </Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

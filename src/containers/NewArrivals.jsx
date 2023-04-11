@@ -22,15 +22,22 @@ const responsive = {
 
 function NewArrivals() {
   const [products, setProducts] = React.useState([]);
+  const [isLoad, setIsLoad] = React.useState(null)
 
   React.useEffect(() => {
     const controller = new AbortController();
 
     fetch(`https://skillkamp-api.com/v1/api/products/new_arrivals`)
       .then((res) => res.json())
-      .then((data) =>
+      .then((data) =>{
         setProducts(data.detail.data.catalog.category.productsWithMetaData.list)
-      );
+        setIsLoad(true)
+      }
+      )
+      .catch(err => {
+        setProducts("Unable to Load, Please Try Again.")
+        setIsLoad(false)
+      });
     return () => controller.abort();
   }, []);
 
@@ -47,11 +54,11 @@ function NewArrivals() {
         infinite={true}
         renderButtonGroupOutside={true}
       >
-        {products.length ? (
+        { isLoad ? (
           products.map((item) => <ProductCard key={item.id} data={item} />)
-        ) : (
-          <p>Loading...</p>
-        )}
+        ) : isLoad === null ? (
+          <p className="text-center">Loading...</p>
+        ) : isLoad === false ? <p>{products}</p> : ""}
       </Carousel>
       <div className="w-screen text-center pb-10">
         <button className="border-2 w-[14em] tracking-wide border-main-1 bg-main-1 py-4 text-xl font-light text-main-4 hover:bg-main-3 hover:text-main-2 hover:border-main-3 active:border-main-3 active:bg-main-3 active:text-main-2 transition-all duration-300">Shop All</button>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LogoBar from "../components/LogoBar";
 
 function Footer() {
@@ -12,10 +13,10 @@ function Footer() {
       <LogoBar fontSize="text-2xl" />
       <div className="flex flex-col items-center md:flex-row md:justify-center md:items-start gap-10 max-w-7xl mx-auto mb-8">
         <div className="flex flex-col items-center gap-2 tracking-wider font-thin text-normal text-main-1">
-          <a href="#">Home</a>
-          <a href="#">Shop Collection</a>
-          <a href="#">Our Story</a>
-          <a href="#">Contact</a>
+          <Link to="/">Home</Link>
+          <Link to="/shop-collection">Shop Collection</Link>
+          <Link to="/our-story">Our Story</Link>
+          <Link to="/contacts">Contact</Link>
         </div>
         <div className="flex w-1/3 justify-center gap-8">
           <button>
@@ -29,10 +30,10 @@ function Footer() {
           </button>
         </div>
         <div className="flex flex-col items-center gap-2 tracking-wider font-thin text-normal text-main-1">
-          <a href="#">Shipping & Returns</a>
-          <a href="#">Store Policy</a>
-          <a href="#">Payment Methods</a>
-          <a href="#">FAQ</a>
+          <Link to="#">Shipping & Returns</Link>
+          <Link to="policy">Store Policy</Link>
+          <a href="/policy#payment">Payment Methods</a>
+          <Link to="faq">FAQ</Link>
         </div>
       </div>
       <div className="text-center">

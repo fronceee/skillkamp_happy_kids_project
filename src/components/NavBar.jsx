@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function NavBar() {
   const linkStyle = "mx-2 md:mx-4 lg:mx-6 tracking-wide";
   return (
-    <div className="w-screen h-fit flex pb-6 justify-center flex-wrap">
+    <div className="w-screen h-fit flex pb-6 justify-center flex-wrap border-b border-main-4">
       <div className="font-light text-sm md:text-lg">
         <Link className={linkStyle} to="/">
           Home

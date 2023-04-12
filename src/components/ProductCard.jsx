@@ -1,10 +1,11 @@
 import React from "react";
 import ButtonAddToCard from "./ButtonAddToCard";
+import { Link } from "react-router-dom";
 
 function ProductCard({ data }) {
   const [imageIndex, setImageIndex] = React.useState(0);
   return (
-    <div className="w-full flex flex-col items-center text-main-1 snap-start relative">
+    <Link to={`product/${data.sku}`} className="w-full flex flex-col items-center text-main-1 snap-start relative">
       {data.ribbon && (
         <div className="absolute top-5 left-5 bg-main-3 text-main-2 px-4">
           {data.ribbon}
@@ -38,7 +39,7 @@ function ProductCard({ data }) {
       )}
 
       <ButtonAddToCard>Add to Cart</ButtonAddToCard>
-    </div>
+    </Link>
   );
 }
 

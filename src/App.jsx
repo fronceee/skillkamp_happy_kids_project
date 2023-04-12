@@ -8,6 +8,7 @@ import Contacts from "./containers/Contacts";
 import Policy from "./containers/Policy"
 import FAQ from "./containers/FAQ";
 import ShopCollection from "./containers/ShopCollection";
+import Product from "./containers/Product";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
             <Route path="policy" element={<Policy />} />
             <Route path="faq" element={<FAQ />} />
             <Route path="shop-collection" element={<ShopCollection />} />
+            <Route path="product">
+              <Route path=":id" element={<Product />}/>
+            </Route>
           </Route>
         </Routes>
       </div>

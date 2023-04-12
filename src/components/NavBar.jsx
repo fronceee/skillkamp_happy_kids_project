@@ -20,7 +20,11 @@ function NavBar() {
         </Link>
       </div>
       <div className="flex justify-between items-center">
-        <img src="./src/assets/account_circle.svg" alt="account icon" />
+        <img
+          className="mr-2"
+          src="/src/assets/account_circle.svg"
+          alt="account icon"
+        />
         <a>Log In</a>
       </div>
     </div>

@@ -109,7 +109,7 @@ export default function MyCarousel() {
         <img
           className="opacity-40 hover:opacity-100 focus:opacity-100"
           alt="back button"
-          src="./src/assets/back_arrow.svg"
+          src="/assets/back_arrow.svg"
         />
       </button>
       <ImageCarousel src={images[currentIndex]} index={currentIndex} />
@@ -123,7 +123,7 @@ export default function MyCarousel() {
         <img
           className="opacity-40 hover:opacity-100 focus:opacity-100"
           alt="next button"
-          src="./src/assets/next_arrow.svg"
+          src="/assets/next_arrow.svg"
         />
       </button>
     </div>

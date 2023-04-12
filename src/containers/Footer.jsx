@@ -20,13 +20,13 @@ function Footer() {
         </div>
         <div className="flex w-1/3 justify-center gap-8">
           <button>
-            <img className="w-6" src="/public/assets/fb_footer.svg" />
+            <img className="w-6" src="/assets/fb_footer.svg" />
           </button>
           <button>
-            <img className="w-6" src="/public/assets/ig_footer.svg" />
+            <img className="w-6" src="/assets/ig_footer.svg" />
           </button>
           <button>
-            <img className="w-6" src="/public/assets/p_footer.svg" />
+            <img className="w-6" src="/assets/p_footer.svg" />
           </button>
         </div>
         <div className="flex flex-col items-center gap-2 tracking-wider font-thin text-normal text-main-1">

@@ -22,7 +22,7 @@ function NavBar() {
       <div className="flex justify-between items-center">
         <img
           className="mr-2"
-          src="/src/assets/account_circle.svg"
+          src="/public/assets/account_circle.svg"
           alt="account icon"
         />
         <a>Log In</a>

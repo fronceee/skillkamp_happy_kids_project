@@ -22,6 +22,14 @@ function Product() {
       </>
     );
   };
+
+  function addToCart() {
+    if (selectedColor && selectedSize) {
+        alert("Added to Cart!")
+    } else {
+        alert(`Please select option(s): ${!selectedColor ? "Color" :""} ${!selectedSize ? "Size": ""}`)
+    }
+  }
   React.useEffect(() => {
     const controller = new AbortController();
     fetch(`https://skillkamp-api.com/v1/api/products/details/${id}`)
@@ -59,23 +67,27 @@ function Product() {
               <p className="font-light">Color</p>
               {productDetail.options[0].selections.map((color) => (
                 <div
-                  className={`w-5 h-5 rounded-xl border border-main-4`}
+                  className={`w-5 h-5 rounded-xl border border-main-4 ${
+                    selectedColor === color.value && "border-2 border-main-1"
+                  }`}
                   style={{ background: color.value }}
+                  onClick={() => setSelectedColor(color.value)}
                 ></div>
               ))}
             </div>
             <div>
               <p className="font-light">Size</p>
               <Listbox value={selectedSize} onChange={setSelectedSize}>
-                <Listbox.Button className="w-full md:w-3/5 text-left border p-4">
+                <Listbox.Button className="w-full md:w-3/5 text-left border p-4 relative">
                   {selectedSize ? selectedSize : "Choose Size"}
                 </Listbox.Button>
-                <Listbox.Options>
+                <Listbox.Options className="absolute z-10 flex flex-col">
                   {productDetail.options[1].selections.map((size) => (
                     <Listbox.Option
                       key={size.id}
                       value={size.value}
-                      className="p-4 cursor-pointer text-main-1 tracking-wider"
+                      selected={size.value === selectedSize}
+                      className="p-4 cursor-pointer text-main-1 tracking-wider bg-main-2"
                     >
                       {size.value}
                     </Listbox.Option>
@@ -83,6 +95,10 @@ function Product() {
                 </Listbox.Options>
               </Listbox>
             </div>
+            <button onClick={() => addToCart()} 
+            className="border-2 w-full md:w-3/4 my-6 p-2 md:py-2 md:px-8 text-sm md:text-xl lg:text-1xl lg:px-14 font-light text-main-1 hover:bg-main-1  hover:text-main-2 active:bg-main-1  active:text-main-2 transition-all duration-300">
+              Add to Cart
+            </button>
             <div>
               <Disclosure defaultOpen={true}>
                 {({ open }) => (
@@ -94,7 +110,11 @@ function Product() {
                           <HeadIcon open={open} />
                         </Disclosure.Button>
                         <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-main-1 grid place-items-start gap-2">
-                          <p>{info.description.replace('<p>','').replace('</p>','')}</p>
+                          <p>
+                            {info.description
+                              .replace("<p>", "")
+                              .replace("</p>", "")}
+                          </p>
                         </Disclosure.Panel>
                       </>
                     ))}

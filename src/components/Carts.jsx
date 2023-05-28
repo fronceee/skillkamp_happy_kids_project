@@ -27,7 +27,7 @@ function Carts() {
       setIsFreeShipping(true);
       setTotalPriceAfterDiscount(totalPrice);
     }
-  }, [totalPrice]);
+  }, [totalPrice,isCouponValid]);
 
   function handleCouponCodeInput(e) {
     setCouponCodeInput(e.target.value.toUpperCase());
@@ -35,11 +35,13 @@ function Carts() {
 
   function handleCouponCodeDiscount(e) {
     if (couponCodeInput.toUpperCase() === "HAPPY123") {
-      setTotalPriceAfterDiscount(totalPrice * 0.9);
+      setTotalPrice(prev => prev * 0.9);
       setIsCouponValid(true);
     } else {
       setIsCouponValid(false);
-      setTotalPriceAfterDiscount(totalPrice);
+      setTotalPrice((prev) => {
+        return cart.items.reduce((acc, cur) => acc + cur.discountedPrice, 0);
+      });
     }
   }
 

@@ -2,8 +2,8 @@ import React from "react";
 import ProductCard from "../components/ProductCard";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
-import ButtonAddToCard from "../components/ButtonAddToCard";
-import Button from "../components/Button"
+import { Link } from "react-router-dom";
+import { getNewArrivalsProducts } from "../utils/api";
 
 const responsive = {
   desktop: {
@@ -22,25 +22,21 @@ const responsive = {
 
 function NewArrivals() {
   const [products, setProducts] = React.useState([]);
-  const [isLoad, setIsLoad] = React.useState(null)
+  const [isLoad, setIsLoad] = React.useState(null);
 
   React.useEffect(() => {
     const controller = new AbortController();
-
-    fetch(`https://skillkamp-api.com/v1/api/products/new_arrivals`)
-      .then((res) => res.json())
-      .then((data) =>{
-        setProducts(data.detail.data.catalog.category.productsWithMetaData.list)
-        setIsLoad(true)
-      }
-      )
-      .catch(err => {
-        setProducts("Unable to Load, Please Try Again.")
-        setIsLoad(false)
+    getNewArrivalsProducts()
+      .then((data) => {
+        setProducts(data);
+        setIsLoad(true);
+      })
+      .catch((err) => {
+        setProducts("Unable to Load. Please Try Again!");
+        setIsLoad(false);
       });
     return () => controller.abort();
   }, []);
-
   return (
     <div className="container mx-auto flex flex-col items-center">
       <h1 className="font-light mt-10 text-3xl md:text-4xl tracking-widest md:mb-6">
@@ -54,15 +50,23 @@ function NewArrivals() {
         infinite={true}
         renderButtonGroupOutside={true}
       >
-        { isLoad ? (
+        {isLoad ? (
           products.map((item) => <ProductCard key={item.id} data={item} />)
         ) : isLoad === null ? (
           <p className="text-center">Loading...</p>
-        ) : isLoad === false ? <p>{products}</p> : ""}
+        ) : isLoad === false ? (
+          <p>{products}</p>
+        ) : (
+          ""
+        )}
       </Carousel>
-      <div className="w-screen text-center pb-10">
-        <button className="border-2 w-[14em] tracking-wide border-main-1 bg-main-1 py-4 text-xl font-light text-main-4 hover:bg-main-3 hover:text-main-2 hover:border-main-3 active:border-main-3 active:bg-main-3 active:text-main-2 transition-all duration-300">Shop All</button>
-      </div>
+      <Link to="/shop-collection">
+        <div className="w-screen text-center pb-10">
+          <button className="border-2 w-[14em] tracking-wide border-main-1 bg-main-1 py-4 text-xl font-light text-main-4 hover:bg-main-3 hover:text-main-2 hover:border-main-3 active:border-main-3 active:bg-main-3 active:text-main-2 transition-all duration-300">
+            Shop All
+          </button>
+        </div>
+      </Link>
     </div>
   );
 }

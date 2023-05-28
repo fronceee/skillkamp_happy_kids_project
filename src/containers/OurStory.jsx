@@ -1,11 +1,18 @@
 import React from "react";
 
 function OurStory() {
+  const [imgPath, setImgPath] = React.useState();
+  React.useEffect(() => {
+    fetch('/api/img')
+      .then(res => res.json())
+      .then(data => setImgPath(data.img))
+  },[])
+
   return (
     <div className="w-screen">
       <img
         className="w-full h-[40vh] md:h-auto object-cover mb-12"
-        src="./src/assets/banner_story.png"
+        src={imgPath}
       />
       <div className="mx-auto text-center font-light max-w-3xl">
         <h1 className="text-4xl tracking-widest">Our Story</h1>

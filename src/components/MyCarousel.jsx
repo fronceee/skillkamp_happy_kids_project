@@ -5,7 +5,11 @@ import { v4 as id } from "uuid";
 import Button from "./Button";
 
 export default function MyCarousel() {
-  const [images, setImages] = React.useState([]);
+  const images = [
+    "./herosimg/Banner1.png",
+    "./herosimg/Banner2.png",
+    "./herosimg/Banner3.png",
+  ]
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   function ProgressDots({ index }) {
@@ -75,18 +79,6 @@ export default function MyCarousel() {
       setCurrentIndex(images.length - 1);
     }
   };
-
-  React.useState(() => {
-    const controller = new AbortController();
-    fetch(`https://skillkamp-api.com/v1/api/images/landing`)
-      .then((res) => res.json())
-      .then((data) => {
-        data["detail"].forEach((img) => {
-          setImages((prev) => [...prev, img]);
-        });
-      });
-    return () => controller.abort();
-  }, []);
 
   React.useEffect(() => {
     const imagesLength = images.length;
